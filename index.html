@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Para Ti 💜</title>
+  <title>Para Ti 💙</title>
 
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      font-family: 'Didot', serif; /* all fonts Didot */
+      font-family: 'Didot', serif;
       color: #f8d6c4;
       scroll-behavior: smooth;
       overflow-x: hidden;
@@ -18,7 +18,7 @@
     }
 
     body {
-      background-color: #000080; /* azul marino / navy blue */
+      background-color: #000080;
       position: relative;
     }
 
@@ -113,7 +113,7 @@
       font-size: 1.3rem;
       color: #dfb09c;
       text-align: center;
-      border: 2px solid #dfb09c; /* outline matching Spotify */
+      border: 2px solid #dfb09c;
       border-radius: 12px;
       padding: 10px;
       box-shadow: 0 0 25px rgba(223,176,156,0.4);
@@ -168,7 +168,7 @@
     <p>baja, baja...</p>
 
     <div class="text-box" id="textBefore">
-✨ Victoria, no sabes cuánto te amo.
+ Victoria, no sabes cuánto te amo.
 Eres lo último que pienso antes de dormir y lo primero que cruza mi mente al despertar.
 Tu sonrisa ilumina mis días, tu voz calma mi alma y tu presencia hace que todo tenga sentido.
 
@@ -177,19 +177,20 @@ Eres la niña más hermosa del universo, la razón por la que quiero ser mejor c
 Contigo todo es más bonito, más fácil, más real.
 
 Quiero pasar el resto de mi vida contigo.
-Amo cada momento a tu lado, y solo quiero seguir construyendo juntos algo que dure para siempre. ✨
+Amo cada momento a tu lado, y solo quiero seguir construyendo juntos algo que dure para siempre. 
     </div>
   </section>
 
   <section id="ask">
     <div id="question">¿Quieres ser mi novia? 💕</div>
     <div>
-      <button class="btn" id="yesBtn">Chi 💖</button>
+      <button class="btn" id="yesBtn">Chi </button>
       <button class="btn" id="noBtn">Ño... 😢</button>
     </div>
 
+    <!-- Playlist and text for Yes -->
     <div id="playlist">
-      <p>Eso! Mira hice una playlist con canciones que me hacen pensar en ti 💌</p>
+      <p>Eso! Mira hice una playlist con canciones que me hacen pensar en ti </p>
       <div class="spotify-container">
         <iframe src="https://open.spotify.com/embed/playlist/7FLatZNHjbCUnT6TSgtfAd?utm_source=generator" 
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
@@ -197,18 +198,18 @@ Amo cada momento a tu lado, y solo quiero seguir construyendo juntos algo que du
       </div>
 
       <div class="text-box" id="textAfterYes">
-💖 Te prometo hacerte la mujer más feliz.
+ Te prometo hacerte la mujer más feliz.
 No somos perfectos, pero quiero que cada día intentemos ser lo mejor el uno para el otro.
 Sé que el camino no siempre será fácil, pero lucharé por ti y por nosotros para siempre.
 
 A veces me siento inútil, pero tú le das sentido a mi vida.
 Eres la persona más increíble que he conocido, y lo nuestro apenas comienza.
-💕 Eres mi todo, y quiero construir un futuro contigo. 💕
+ Eres mi todo, y quiero construir un futuro contigo. 
       </div>
-
-      <!-- Back button only appears if they click "No" -->
-      <button class="btn" id="backBtn" style="display:none; margin-top:20px;">Err Respusta incorrecta</button>
     </div>
+
+    <!-- Back button for No -->
+    <button class="btn" id="backBtn" style="display:none; margin-top:20px;">Err Respusta incorrecta</button>
   </section>
 
   <script>
@@ -236,27 +237,27 @@ Eres la persona más increíble que he conocido, y lo nuestro apenas comienza.
 
     // Yes button logic
     yesBtn.addEventListener("click", () => {
-      question.textContent = "💕 Te amo mucho mi vida!";
+      question.textContent = " Te amo mucho mi vida!";
       yesBtn.style.display = "none";
       noBtn.style.display = "none";
       playlist.style.display = "block";
       textAfterYes.style.display = "block";
-      backBtn.style.display = "none"; // No back button on Yes
+      backBtn.style.display = "none";
     });
 
     // No button logic
     noBtn.addEventListener("click", () => {
-      question.textContent = "¿Cómo que no...? ¿Estás segura? 💔";
+      question.textContent = "¿Cómo que no...? ¿Estás segura? ";
       yesBtn.style.display = "none";
       noBtn.style.display = "none";
       playlist.style.display = "none";
       textAfterYes.style.display = "none";
-      backBtn.style.display = "inline-block"; // Only show back button here
+      backBtn.style.display = "inline-block"; // Show back button
     });
 
     // Back button logic
     backBtn.addEventListener("click", () => {
-      question.textContent = "¿Quieres ser mi novia? 💕";
+      question.textContent = "¿Quieres ser mi novia? ";
       yesBtn.style.display = "inline-block";
       noBtn.style.display = "inline-block";
       playlist.style.display = "none";
