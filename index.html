@@ -5,15 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Para Ti 💜</title>
 
-  <!-- Google Font for mobile only -->
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      font-family: 'Brush Script MT', cursive; /* desktop font */
+      font-family: 'Didot', serif; /* all fonts Didot */
       color: #f8d6c4;
       scroll-behavior: smooth;
       overflow-x: hidden;
@@ -116,6 +113,10 @@
       font-size: 1.3rem;
       color: #dfb09c;
       text-align: center;
+      border: 2px solid #dfb09c; /* outline matching Spotify */
+      border-radius: 12px;
+      padding: 10px;
+      box-shadow: 0 0 25px rgba(223,176,156,0.4);
     }
 
     /* Spotify responsive container */
@@ -125,7 +126,6 @@
       margin: 20px auto;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 0 25px rgba(223,176,156,0.4);
       position: relative;
       padding-top: 80%; /* height for mobile */
     }
@@ -139,12 +139,8 @@
       border: 0;
     }
 
-    /* ===== MOBILE RESPONSIVE ===== */
+    /* Mobile adjustments */
     @media screen and (max-width: 480px) {
-      body {
-        font-family: 'Dancing Script', cursive; /* mobile font */
-      }
-
       #question {
         font-size: 2.2rem;
       }
@@ -161,7 +157,7 @@
 
       .spotify-container {
         width: 100%;
-        padding-top: 80%; /* maintain aspect ratio */
+        padding-top: 80%;
       }
     }
   </style>
@@ -211,11 +207,13 @@ A veces me siento inútil, pero tú le das sentido a mi vida.
 Eres la persona más increíble que he conocido, y lo nuestro apenas comienza.
 💕 Eres mi todo, y quiero construir un futuro contigo. 💕
       </div>
+
+      <button class="btn" id="backBtn" style="display:none; margin-top:20px;">Err Respusta incorrecta</button>
     </div>
   </section>
 
   <script>
-    // Generate stars dynamically
+    // Generate stars
     const starContainer = document.getElementById("stars");
     const numStars = 300;
     for (let i = 0; i < numStars; i++) {
@@ -230,26 +228,34 @@ Eres la persona más increíble que he conocido, y lo nuestro apenas comienza.
       starContainer.appendChild(star);
     }
 
-    // Button logic
     const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
     const playlist = document.getElementById("playlist");
     const question = document.getElementById("question");
     const textAfterYes = document.getElementById("textAfterYes");
+    const backBtn = document.getElementById("backBtn");
 
-    yesBtn.addEventListener("click", () => {
-      question.textContent = "💕 Te amo mucho mi vida!";
+    function showAnswer(isYes) {
+      question.textContent = isYes ? "💕 Te amo mucho mi vida!" : "¿Cómo que no...? ¿Estás segura? 💔";
       yesBtn.style.display = "none";
       noBtn.style.display = "none";
       playlist.style.display = "block";
-      textAfterYes.style.display = "block";
-    });
+      textAfterYes.style.display = isYes ? "block" : "none";
+      backBtn.style.display = "inline-block";
+    }
 
-    noBtn.addEventListener("click", () => {
-      question.textContent = "¿Cómo que no...? ¿Estás segura? 💔";
-      yesBtn.style.display = "none";
-      noBtn.style.display = "none";
-    });
+    function resetQuestion() {
+      question.textContent = "¿Quieres ser mi novia? 💕";
+      yesBtn.style.display = "inline-block";
+      noBtn.style.display = "inline-block";
+      playlist.style.display = "none";
+      textAfterYes.style.display = "none";
+      backBtn.style.display = "none";
+    }
+
+    yesBtn.addEventListener("click", () => showAnswer(true));
+    noBtn.addEventListener("click", () => showAnswer(false));
+    backBtn.addEventListener("click", resetQuestion);
   </script>
 </body>
 </html>
