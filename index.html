@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Para Ti 💖</title>
+  <title>Para Ti 💙</title>
 
   <style>
     html, body {
@@ -11,29 +11,44 @@
       padding: 0;
       height: 100%;
       font-family: 'Didot', serif;
-      color: #f3e0d8;
+      color: #f8d6c4;
       scroll-behavior: smooth;
       overflow-x: hidden;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
     }
 
     body {
-      background: url('https://media.discordapp.net/attachments/1397520413931601930/1433655131534131330/8be7473e1b0ca665bac42ae805b7ddbf.jpg?ex=69057ae3&is=69042963&hm=8eb639a82710e1db2df6e77fc79471590697d844990150f4988f2b9eee532f57&=&format=webp') 
-      no-repeat center center fixed;
+      background: url('https://media.discordapp.net/attachments/1397520413931601930/1433655131534131330/8be7473e1b0ca665bac42ae805b7ddbf.jpg?ex=69057ae3&is=69042963&hm=8eb639a82710e1db2df6e77fc79471590697d844990150f4988f2b9eee532f57&=&format=webp&width=324&height=648') no-repeat center center fixed;
       background-size: cover;
       position: relative;
     }
 
-    /* Add a soft overlay behind content for better readability */
-    body::before {
-      content: "";
-      position: fixed;
+    .stars {
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.45);
+      overflow: hidden;
       z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      background-color: #dfb09c;
+      border-radius: 50%;
+      opacity: 0.4;
+      animation: floatStars 120s linear infinite, twinkle 3s ease-in-out infinite;
+    }
+
+    @keyframes floatStars {
+      from { transform: translateY(0); }
+      to { transform: translateY(-100%); }
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.1; }
+      50% { opacity: 0.6; }
     }
 
     section {
@@ -49,25 +64,17 @@
     }
 
     h1 {
-      font-size: 2.8rem;
-      color: #ffe6de;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 15px 25px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.6);
-      margin-bottom: 10px;
-      text-shadow: 0 0 12px rgba(255, 180, 180, 0.8);
-    }
-
-    p {
-      color: #f5dad1;
-      font-size: 1.2rem;
-      text-shadow: 0 0 6px rgba(0,0,0,0.8);
+      font-size: 2.6rem;
+      color: #f5cbb7;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      border-radius: 12px;
+      text-shadow: 0 0 10px #000;
     }
 
     #question {
       font-size: 3rem;
-      color: #f8d6c4;
+      color: #dfb09c;
       text-shadow: 0 0 10px #000;
       margin-top: 30px;
     }
@@ -94,8 +101,8 @@
       max-width: 700px;
       min-height: 100px;
       border-radius: 25px;
-      background-color: rgba(0,0,0,0.65);
-      color: #f3e0d8;
+      background-color: rgba(0,0,0,0.6);
+      color: #f8d6c4;
       font-size: 1.4rem;
       line-height: 1.6em;
       padding: 20px;
@@ -113,7 +120,7 @@
       display: none;
       margin-top: 40px;
       font-size: 1.3rem;
-      color: #f3e0d8;
+      color: #dfb09c;
       text-align: center;
       border-radius: 12px;
       padding: 10px;
@@ -146,11 +153,6 @@
     }
 
     @media screen and (max-width: 480px) {
-      h1 {
-        font-size: 2rem;
-        padding: 10px 15px;
-      }
-
       #question {
         font-size: 2.2rem;
       }
@@ -173,8 +175,10 @@
   </style>
 </head>
 <body>
+  <div class="stars" id="stars"></div>
+
   <section>
-    <h1>Oye... quería preguntarte algo 💖</h1>
+    <h1>Oye... quería preguntarte algo</h1>
     <p>baja, baja...</p>
 
     <div class="text-box" id="textBefore">
@@ -192,14 +196,14 @@ Amo cada momento a tu lado, y solo quiero seguir construyendo juntos algo que du
   </section>
 
   <section id="ask">
-    <div id="question">¿Quieres ser mi novia? 💖</div>
+    <div id="question">¿Quieres ser mi novia?</div>
     <div>
-      <button class="btn" id="yesBtn">Sí 💖</button>
-      <button class="btn" id="noBtn">No 💔</button>
+      <button class="btn" id="yesBtn">Chi 💖</button>
+      <button class="btn" id="noBtn">Ño... 💔</button>
     </div>
 
     <div id="playlist">
-      <p>Hice una playlist con canciones que me hacen pensar en ti 💖</p>
+      <p>¡Eso! Mira, hice una playlist con canciones que me hacen pensar en ti 💌</p>
       <div class="spotify-container">
         <iframe src="https://open.spotify.com/embed/playlist/7FLatZNHjbCUnT6TSgtfAd?utm_source=generator"
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
@@ -219,10 +223,25 @@ Eres mi todo, y quiero construir un futuro contigo.
   </section>
 
   <div style="text-align:center;">
-    <button class="btn" id="backBtn">Respuesta incorrecta 💖</button>
+    <button class="btn" id="backBtn">Err Respuesta incorrecta 💖</button>
   </div>
 
   <script>
+    // Generate stars
+    const starContainer = document.getElementById("stars");
+    const numStars = 300;
+    for (let i = 0; i < numStars; i++) {
+      const star = document.createElement("div");
+      star.classList.add("star");
+      const size = Math.random() * 3 + 1;
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 200}%`;
+      star.style.opacity = Math.random() * 0.5 + 0.1;
+      starContainer.appendChild(star);
+    }
+
     const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
     const playlist = document.getElementById("playlist");
@@ -231,7 +250,7 @@ Eres mi todo, y quiero construir un futuro contigo.
     const backBtn = document.getElementById("backBtn");
 
     yesBtn.addEventListener("click", () => {
-      question.textContent = "Te amo mucho 💖";
+      question.textContent = "Te amo mucho mi vida 💖";
       yesBtn.style.display = "none";
       noBtn.style.display = "none";
       playlist.style.display = "block";
@@ -240,7 +259,7 @@ Eres mi todo, y quiero construir un futuro contigo.
     });
 
     noBtn.addEventListener("click", () => {
-      question.textContent = "¿Segura? 💔";
+      question.textContent = "no? Estas segura!?";
       yesBtn.style.display = "none";
       noBtn.style.display = "none";
       playlist.style.display = "none";
@@ -249,7 +268,7 @@ Eres mi todo, y quiero construir un futuro contigo.
     });
 
     backBtn.addEventListener("click", () => {
-      question.textContent = "¿Quieres ser mi novia? 💖";
+      question.textContent = "¿Quieres ser mi novia?";
       yesBtn.style.display = "inline-block";
       noBtn.style.display = "inline-block";
       playlist.style.display = "none";
