@@ -119,15 +119,14 @@
       box-shadow: 0 0 25px rgba(223,176,156,0.4);
     }
 
-    /* Spotify responsive container */
     .spotify-container {
-      width: 400px; /* desktop fixed width */
+      width: 400px; 
       max-width: 100%;
       margin: 20px auto;
       border-radius: 12px;
       overflow: hidden;
       position: relative;
-      padding-top: 80%; /* height for mobile */
+      padding-top: 80%; 
     }
 
     .spotify-container iframe {
@@ -139,7 +138,6 @@
       border: 0;
     }
 
-    /* Mobile adjustments */
     @media screen and (max-width: 480px) {
       #question {
         font-size: 2.2rem;
@@ -235,27 +233,32 @@ Eres la persona más increíble que he conocido, y lo nuestro apenas comienza.
     const textAfterYes = document.getElementById("textAfterYes");
     const backBtn = document.getElementById("backBtn");
 
-    function showAnswer(isYes) {
-      question.textContent = isYes ? "💕 Te amo mucho mi vida!" : "¿Cómo que no...? ¿Estás segura? 💔";
+    yesBtn.addEventListener("click", () => {
+      question.textContent = "💕 Te amo mucho mi vida!";
       yesBtn.style.display = "none";
       noBtn.style.display = "none";
       playlist.style.display = "block";
-      textAfterYes.style.display = isYes ? "block" : "none";
-      backBtn.style.display = "inline-block";
-    }
+      textAfterYes.style.display = "block";
+      backBtn.style.display = "none"; // No back button on Yes
+    });
 
-    function resetQuestion() {
+    noBtn.addEventListener("click", () => {
+      question.textContent = "¿Cómo que no...? ¿Estás segura? 💔";
+      yesBtn.style.display = "none";
+      noBtn.style.display = "none";
+      playlist.style.display = "none";
+      textAfterYes.style.display = "none";
+      backBtn.style.display = "inline-block"; // Only show back button here
+    });
+
+    backBtn.addEventListener("click", () => {
       question.textContent = "¿Quieres ser mi novia? 💕";
       yesBtn.style.display = "inline-block";
       noBtn.style.display = "inline-block";
       playlist.style.display = "none";
       textAfterYes.style.display = "none";
       backBtn.style.display = "none";
-    }
-
-    yesBtn.addEventListener("click", () => showAnswer(true));
-    noBtn.addEventListener("click", () => showAnswer(false));
-    backBtn.addEventListener("click", resetQuestion);
+    });
   </script>
 </body>
 </html>
