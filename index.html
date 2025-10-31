@@ -1,250 +1,138 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Para Ti 💙</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Background</title>
 
   <style>
-    html, body {
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
       height: 100%;
-      font-family: 'Didot', serif;
-      color: #f8d6c4;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
-      background-color: #000;
+      width: 100%;
+      font-family: 'Poppins', sans-serif;
     }
 
     body {
-      background: url('https://media.discordapp.net/attachments/1397520413931601930/1433655131534131330/8be7473e1b0ca665bac42ae805b7ddbf.jpg?ex=69057ae3&is=69042963&hm=8eb639a82710e1db2df6e77fc79471590697d844990150f4988f2b9eee532f57&=&format=webp') 
-                  no-repeat center center fixed;
-      background-size: cover; /* Perfectly fills screen while keeping aspect ratio */
-      position: relative;
-    }
-
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.4); /* Subtle dark overlay for readability */
-      z-index: 0;
-    }
-
-    section {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
+      background-image: url('https://media.discordapp.net/attachments/1397520413931601930/1433655131534131330/8be7473e1b0ca665bac42ae805b7ddbf.jpg?ex=69057ae3&is=69042963&hm=8eb639a82710e1db2df6e77fc79471590697d844990150f4988f2b9eee532f57&=&format=webp&width=324&height=648');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
+      color: #f3f3f3;
       text-align: center;
-      padding: 0 10%;
+      padding: 20px;
     }
 
-    #question {
-      font-size: 2.8rem;
-      color: #dfb09c;
-      text-shadow: 0 0 10px #000;
-      margin-top: 30px;
+    .quiz-container {
+      background: rgba(0, 0, 0, 0.55);
+      padding: 25px 30px;
+      border-radius: 15px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
     }
 
     h1 {
-      font-size: 2.5rem;
-      color: #f8d6c4;
-      text-shadow: 0 0 10px #000;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: #f8f8f8;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      color: #e2e2e2;
     }
 
     .btn {
-      background-color: #dfb09c;
-      color: #2e003e;
-      font-size: 1.5rem;
+      display: block;
+      width: 100%;
+      background-color: #ff4d6d;
+      color: white;
       border: none;
-      border-radius: 20px;
-      padding: 12px 30px;
-      margin: 15px;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 10px;
+      font-size: 1rem;
       cursor: pointer;
-      transition: 0.3s;
+      transition: background 0.3s ease;
     }
 
     .btn:hover {
-      background-color: #f1c6b3;
-      transform: scale(1.05);
+      background-color: #ff3358;
     }
 
-    .text-box {
-      width: 90%;
-      max-width: 700px;
-      border-radius: 25px;
-      background-color: rgba(0,0,0,0.6);
-      color: #f8d6c4;
-      font-size: 1.4rem;
-      line-height: 1.6em;
-      padding: 20px;
-      margin: 25px auto;
-      text-align: center;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-      white-space: pre-line;
+    .btn:disabled {
+      background-color: #555;
+      cursor: not-allowed;
     }
 
-    #textAfterYes {
-      display: none;
+    .correct {
+      background-color: #28a745 !important;
     }
 
-    #playlist {
-      display: none;
-      margin-top: 40px;
-      font-size: 1.3rem;
-      color: #dfb09c;
-      text-align: center;
-      border-radius: 12px;
-      padding: 10px;
-      box-shadow: 0 0 15px rgba(223,176,156,0.4);
-      background-color: rgba(0,0,0,0.5);
+    .incorrect {
+      background-color: #dc3545 !important;
     }
 
-    .spotify-container {
-      width: 400px;
-      max-width: 100%;
-      margin: 20px auto;
-      border-radius: 12px;
-      overflow: hidden;
-      position: relative;
-      padding-top: 80%;
+    #message {
+      margin-top: 15px;
+      font-size: 1.2rem;
+      color: #ffb6c1;
     }
 
-    .spotify-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
+    @media (max-width: 480px) {
+      .quiz-container {
+        padding: 20px;
+      }
 
-    #backBtn {
-      display: none;
-      margin-top: 30px;
-    }
-
-    @media screen and (max-width: 480px) {
       h1 {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
       }
 
-      #question {
-        font-size: 2rem;
-      }
-
-      .btn {
-        font-size: 1.2rem;
-        padding: 10px 20px;
-      }
-
-      .text-box {
-        font-size: 1.1rem;
-        padding: 15px;
-      }
-
-      .spotify-container {
-        width: 100%;
-        padding-top: 80%;
+      p {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="overlay"></div>
-
-  <section>
-    <h1>Oye... quería preguntarte algo 💫</h1>
-    <p>baja, baja...</p>
-
-    <div class="text-box" id="textBefore">
-Victoria, no sabes cuánto te amo.
-Eres lo último que pienso antes de dormir y lo primero que cruza mi mente al despertar.
-Tu sonrisa ilumina mis días, tu voz calma mi alma y tu presencia hace que todo tenga sentido.
-
-No hay palabras que alcancen para decirte lo increíble que eres.
-Eres la niña más hermosa del universo, la razón por la que quiero ser mejor cada día.
-Contigo todo es más bonito, más fácil, más real.
-
-Quiero pasar el resto de mi vida contigo.
-Amo cada momento a tu lado, y solo quiero seguir construyendo juntos algo que dure para siempre.
-    </div>
-  </section>
-
-  <section id="ask">
-    <div id="question">¿Quieres ser mi novia? 💕</div>
-    <div>
-      <button class="btn" id="yesBtn">Chi 💖</button>
-      <button class="btn" id="noBtn">Ño... 😢</button>
-    </div>
-
-    <div id="playlist">
-      <p>¡Eso! Mira, hice una playlist con canciones que me hacen pensar en ti 💌</p>
-      <div class="spotify-container">
-        <iframe src="https://open.spotify.com/embed/playlist/7FLatZNHjbCUnT6TSgtfAd?utm_source=generator"
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"></iframe>
-      </div>
-
-      <div class="text-box" id="textAfterYes">
-Te prometo hacerte la mujer más feliz.
-No somos perfectos, pero quiero que cada día intentemos ser lo mejor el uno para el otro.
-Sé que el camino no siempre será fácil, pero lucharé por ti y por nosotros para siempre.
-
-A veces me siento inútil, pero tú le das sentido a mi vida.
-Eres la persona más increíble que he conocido, y lo nuestro apenas comienza.
-Eres mi todo, y quiero construir un futuro contigo.
-      </div>
-    </div>
-  </section>
-
-  <div style="text-align:center;">
-    <button class="btn" id="backBtn">Err Respuesta incorrecta 😅</button>
+  <div class="quiz-container">
+    <h1>💖 Pregunta del Día 💖</h1>
+    <p>¿Cuál es el idioma más hablado del mundo?</p>
+    <button class="btn" onclick="checkAnswer(this, false)">Inglés</button>
+    <button class="btn" onclick="checkAnswer(this, true)">Chino Mandarín</button>
+    <button class="btn" onclick="checkAnswer(this, false)">Español</button>
+    <button class="btn" onclick="checkAnswer(this, false)">Árabe</button>
+    <p id="message"></p>
   </div>
 
   <script>
-    const yesBtn = document.getElementById("yesBtn");
-    const noBtn = document.getElementById("noBtn");
-    const playlist = document.getElementById("playlist");
-    const question = document.getElementById("question");
-    const textAfterYes = document.getElementById("textAfterYes");
-    const backBtn = document.getElementById("backBtn");
+    function checkAnswer(button, correct) {
+      const buttons = document.querySelectorAll('.btn');
+      const message = document.getElementById('message');
 
-    yesBtn.addEventListener("click", () => {
-      question.textContent = "💙 Te amo mucho mi vida!";
-      yesBtn.style.display = "none";
-      noBtn.style.display = "none";
-      playlist.style.display = "block";
-      textAfterYes.style.display = "block";
-      backBtn.style.display = "none";
-    });
+      // Disable all buttons after one click
+      buttons.forEach(btn => btn.disabled = true);
 
-    noBtn.addEventListener("click", () => {
-      question.textContent = "¿Cómo que no...? ¿Estás segura? 💔";
-      yesBtn.style.display = "none";
-      noBtn.style.display = "none";
-      playlist.style.display = "none";
-      textAfterYes.style.display = "none";
-      backBtn.style.display = "inline-block";
-    });
-
-    backBtn.addEventListener("click", () => {
-      question.textContent = "¿Quieres ser mi novia? 💕";
-      yesBtn.style.display = "inline-block";
-      noBtn.style.display = "inline-block";
-      playlist.style.display = "none";
-      textAfterYes.style.display = "none";
-      backBtn.style.display = "none";
-    });
+      if (correct) {
+        button.classList.add('correct');
+        message.textContent = "💖 ¡Correcto! El chino mandarín es el más hablado.";
+      } else {
+        button.classList.add('incorrect');
+        message.textContent = "Respuesta incorrecta 💔 Intenta otra vez.";
+      }
+    }
   </script>
 </body>
 </html>
