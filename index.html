@@ -206,6 +206,7 @@ Eres la persona más increíble que he conocido, y lo nuestro apenas comienza.
 💕 Eres mi todo, y quiero construir un futuro contigo. 💕
       </div>
 
+      <!-- Back button only appears if they click "No" -->
       <button class="btn" id="backBtn" style="display:none; margin-top:20px;">Err Respusta incorrecta</button>
     </div>
   </section>
@@ -233,6 +234,7 @@ Eres la persona más increíble que he conocido, y lo nuestro apenas comienza.
     const textAfterYes = document.getElementById("textAfterYes");
     const backBtn = document.getElementById("backBtn");
 
+    // Yes button logic
     yesBtn.addEventListener("click", () => {
       question.textContent = "💕 Te amo mucho mi vida!";
       yesBtn.style.display = "none";
@@ -242,6 +244,7 @@ Eres la persona más increíble que he conocido, y lo nuestro apenas comienza.
       backBtn.style.display = "none"; // No back button on Yes
     });
 
+    // No button logic
     noBtn.addEventListener("click", () => {
       question.textContent = "¿Cómo que no...? ¿Estás segura? 💔";
       yesBtn.style.display = "none";
@@ -251,6 +254,7 @@ Eres la persona más increíble que he conocido, y lo nuestro apenas comienza.
       backBtn.style.display = "inline-block"; // Only show back button here
     });
 
+    // Back button logic
     backBtn.addEventListener("click", () => {
       question.textContent = "¿Quieres ser mi novia? 💕";
       yesBtn.style.display = "inline-block";
