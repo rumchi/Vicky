@@ -23,34 +23,6 @@
       position: relative;
     }
 
-    .stars {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: 0;
-    }
-
-    .star {
-      position: absolute;
-      background-color: #dfb09c;
-      border-radius: 50%;
-      opacity: 0.4;
-      animation: floatStars 120s linear infinite, twinkle 3s ease-in-out infinite;
-    }
-
-    @keyframes floatStars {
-      from { transform: translateY(0); }
-      to { transform: translateY(-100%); }
-    }
-
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.1; }
-      50% { opacity: 0.6; }
-    }
-
     section {
       position: relative;
       z-index: 1;
@@ -64,19 +36,35 @@
     }
 
     h1 {
-      font-size: 2.6rem;
-      color: #f5cbb7;
+      font-size: 2.8rem;
+      color: #ffe6d9;
       background-color: rgba(0, 0, 0, 0.5);
-      padding: 10px 20px;
-      border-radius: 12px;
+      padding: 10px 25px;
+      border-radius: 20px;
       text-shadow: 0 0 10px #000;
     }
 
-    #question {
-      font-size: 3rem;
-      color: #dfb09c;
+    #bajaBox {
+      background-color: rgba(0,0,0,0.6);
+      color: #f8d6c4;
+      font-size: 1.4rem;
+      border-radius: 25px;
+      padding: 10px 25px;
+      margin-top: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+
+    #questionBox {
+      background-color: rgba(0,0,0,0.6);
+      padding: 20px;
+      border-radius: 25px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      color: #f8d6c4;
+      font-size: 2.3rem;
+      margin-top: 20px;
       text-shadow: 0 0 10px #000;
-      margin-top: 30px;
+      width: 90%;
+      max-width: 700px;
     }
 
     .btn {
@@ -114,6 +102,14 @@
 
     #textAfterYes {
       display: none;
+      background: none;
+      box-shadow: none;
+      padding: 0;
+      line-height: 1.6em;
+      text-align: center;
+      white-space: pre-line;
+      margin-top: 25px;
+      color: #f8d6c4;
     }
 
     #playlist {
@@ -153,7 +149,7 @@
     }
 
     @media screen and (max-width: 480px) {
-      #question {
+      h1 {
         font-size: 2.2rem;
       }
 
@@ -171,15 +167,17 @@
         width: 100%;
         padding-top: 80%;
       }
+
+      #questionBox {
+        font-size: 1.9rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="stars" id="stars"></div>
-
   <section>
     <h1>Oye... quería preguntarte algo</h1>
-    <p>baja, baja...</p>
+    <div id="bajaBox">baja, baja..</div>
 
     <div class="text-box" id="textBefore">
 Victoria, no sabes cuánto te amo.
@@ -196,21 +194,24 @@ Amo cada momento a tu lado, y solo quiero seguir construyendo juntos algo que du
   </section>
 
   <section id="ask">
-    <div id="question">¿Quieres ser mi novia?</div>
+    <div id="questionBox">
+      <div id="question">¿Quieres ser mi novia?</div>
+    </div>
+
     <div>
-      <button class="btn" id="yesBtn">Chi 💖</button>
-      <button class="btn" id="noBtn">Ño... 💔</button>
+      <button class="btn" id="yesBtn">💖 Chi 💖</button>
+      <button class="btn" id="noBtn">  Ño  </button>
     </div>
 
     <div id="playlist">
-      <p>¡Eso! Mira, hice una playlist con canciones que me hacen pensar en ti 💌</p>
+      <p>Hice una playlist con canciones que me hacen pensar en ti 💖</p>
       <div class="spotify-container">
         <iframe src="https://open.spotify.com/embed/playlist/7FLatZNHjbCUnT6TSgtfAd?utm_source=generator"
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                 loading="lazy"></iframe>
       </div>
 
-      <div class="text-box" id="textAfterYes">
+      <div id="textAfterYes">
 Te prometo hacerte la mujer más feliz.
 No somos perfectos, pero quiero que cada día intentemos ser lo mejor el uno para el otro.
 Sé que el camino no siempre será fácil, pero lucharé por ti y por nosotros para siempre.
@@ -223,34 +224,21 @@ Eres mi todo, y quiero construir un futuro contigo.
   </section>
 
   <div style="text-align:center;">
-    <button class="btn" id="backBtn">Err Respuesta incorrecta 💖</button>
+    <button class="btn" id="backBtn">💖 Err Respuesta incorrecta 💖</button>
   </div>
 
   <script>
-    // Generate stars
-    const starContainer = document.getElementById("stars");
-    const numStars = 300;
-    for (let i = 0; i < numStars; i++) {
-      const star = document.createElement("div");
-      star.classList.add("star");
-      const size = Math.random() * 3 + 1;
-      star.style.width = `${size}px`;
-      star.style.height = `${size}px`;
-      star.style.left = `${Math.random() * 100}%`;
-      star.style.top = `${Math.random() * 200}%`;
-      star.style.opacity = Math.random() * 0.5 + 0.1;
-      starContainer.appendChild(star);
-    }
-
     const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
     const playlist = document.getElementById("playlist");
     const question = document.getElementById("question");
+    const questionBox = document.getElementById("questionBox");
     const textAfterYes = document.getElementById("textAfterYes");
     const backBtn = document.getElementById("backBtn");
 
     yesBtn.addEventListener("click", () => {
-      question.textContent = "Te amo mucho mi vida 💖";
+      question.textContent = "💖 Te amo mucho 💖";
+      questionBox.style.display = "block";
       yesBtn.style.display = "none";
       noBtn.style.display = "none";
       playlist.style.display = "block";
@@ -259,7 +247,8 @@ Eres mi todo, y quiero construir un futuro contigo.
     });
 
     noBtn.addEventListener("click", () => {
-      question.textContent = "no? Estas segura!?";
+      question.textContent = "¿Estás segura?";
+      questionBox.style.display = "block";
       yesBtn.style.display = "none";
       noBtn.style.display = "none";
       playlist.style.display = "none";
@@ -269,6 +258,7 @@ Eres mi todo, y quiero construir un futuro contigo.
 
     backBtn.addEventListener("click", () => {
       question.textContent = "¿Quieres ser mi novia?";
+      questionBox.style.display = "block";
       yesBtn.style.display = "inline-block";
       noBtn.style.display = "inline-block";
       playlist.style.display = "none";
