@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Para Ti 💜</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Brush Script MT', cursive;
+      color: #f8d6c4;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+
+    body {
+      background: linear-gradient(180deg, #3b006a 0%, #1c0032 100%);
+      position: relative;
+    }
+
+    .stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 200%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      background-color: #dfb09c;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: floatStars 120s linear infinite, twinkle 3s ease-in-out infinite;
+    }
+
+    @keyframes floatStars {
+      from { transform: translateY(0); }
+      to { transform: translateY(-100%); }
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    section {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 0 10%;
+    }
+
+    #question {
+      font-size: 3rem;
+      color: #dfb09c;
+      text-shadow: 0 0 20px #dfb09c;
+      margin-top: 30px;
+    }
+
+    .btn {
+      background-color: #dfb09c;
+      color: #2e003e;
+      font-size: 1.7rem;
+      border: none;
+      border-radius: 20px;
+      padding: 12px 30px;
+      margin: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #f1c6b3;
+      transform: scale(1.05);
+    }
+
+    #playlist {
+      display: none;
+      margin-top: 40px;
+      font-size: 1.3rem;
+      color: #dfb09c;
+      text-align: center;
+    }
+
+    iframe {
+      border-radius: 12px;
+      margin-top: 20px;
+      box-shadow: 0 0 25px rgba(223,176,156,0.4);
+      width: 100%;
+      max-width: 400px;
+      height: 300px;
+    }
+
+    .text-box {
+      width: 90%;
+      max-width: 700px;
+      min-height: 100px;
+      border: 2px solid #dfb09c;
+      border-radius: 25px;
+      background-color: rgba(255, 255, 255, 0.08);
+      color: #f8d6c4;
+      font-size: 1.4rem;
+      line-height: 1.6em;
+      padding: 20px 20px;
+      margin: 25px auto;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(223,176,156,0.25);
+      white-space: pre-line;
+    }
+
+    #textAfterYes {
+      display: none;
+    }
+
+    /* ===== MOBILE RESPONSIVE ===== */
+    @media screen and (max-width: 480px) {
+      #question {
+        font-size: 2.2rem;
+      }
+
+      .btn {
+        font-size: 1.4rem;
+        padding: 10px 25px;
+      }
+
+      .text-box {
+        font-size: 1.2rem;
+        padding: 15px 15px;
+      }
+
+      iframe {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+
+  <section>
+    <h1>Oye... quería preguntarte algo 💫</h1>
+    <p>baja, baja...</p>
+
+    <div class="text-box" id="textBefore">
+      ✨ Victoria, no sabes cuánto te amo.
+Eres lo último que pienso antes de dormir y lo primero que cruza mi mente al despertar.
+Tu sonrisa ilumina mis días, tu voz calma mi alma y tu presencia hace que todo tenga sentido.
+
+No hay palabras que alcancen para decirte lo increíble que eres.
+Eres la niña más hermosa del universo, la razón por la que quiero ser mejor cada día.
+Contigo todo es más bonito, más fácil, más real.
+
+Quiero pasar el resto de mi vida contigo.
+Amo cada momento a tu lado, y solo quiero seguir construyendo juntos algo que dure para siempre. ✨
+    </div>
+  </section>
+
+  <section id="ask">
+    <div id="question">¿Quieres ser mi novia? 💕</div>
+    <div>
+      <button class="btn" id="yesBtn">Chi 💖</button>
+      <button class="btn" id="noBtn">Ño... 😢</button>
+    </div>
+
+    <div id="playlist">
+      <p>Eso! Mira hice una playlist con canciones que me hacen pensar en ti 💌</p>
+      <iframe src="https://open.spotify.com/embed/playlist/7FLatZNHjbCUnT6TSgtfAd?utm_source=generator" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+      <div class="text-box" id="textAfterYes">
+        💖 Te prometo hacerte la mujer más feliz.
+No somos perfectos, pero quiero que cada día intentemos ser lo mejor el uno para el otro.
+Sé que el camino no siempre será fácil, pero lucharé por ti y por nosotros para siempre.
+
+A veces me siento inútil, pero tú le das sentido a mi vida.
+Eres la persona más increíble que he conocido, y lo nuestro apenas comienza.
+💕 Eres mi todo, y quiero construir un futuro contigo. 💕
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const starContainer = document.getElementById("stars");
+    const numStars = 300;
+    for (let i = 0; i < numStars; i++) {
+      const star = document.createElement("div");
+      star.classList.add("star");
+      const size = Math.random() * 3 + 1;
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 200}%`;
+      star.style.opacity = Math.random() * 0.8 + 0.2;
+      starContainer.appendChild(star);
+    }
+
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const playlist = document.getElementById("playlist");
+    const question = document.getElementById("question");
+    const textAfterYes = document.getElementById("textAfterYes");
+
+    yesBtn.addEventListener("click", () => {
+      question.textContent = "💕 Te amo mucho mi vida!";
+      yesBtn.style.display = "none";
+      noBtn.style.display = "none";
+      playlist.style.display = "block";
+      textAfterYes.style.display = "block";
+    });
+
+    noBtn.addEventListener("click", () => {
+      question.textContent = "¿Cómo que no...? ¿Estás segura? 💔";
+      yesBtn.style.display = "none";
+      noBtn.style.display = "none";
+    });
+  </script>
+</body>
+</html>
